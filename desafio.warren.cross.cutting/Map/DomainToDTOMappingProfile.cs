@@ -9,11 +9,8 @@ namespace desafio.warren.cross.cutting.Map
         public DomainToDTOMappingProfile()
         {
             CreateMap<Conta, ContaDTO>();
-
-            CreateMap<Conta, ContaDTO>();
             CreateMap<Movimento, MovimentoDTO>();
             CreateMap<Operacao, OperacaoDTO>();
-
         }
     }
 }
