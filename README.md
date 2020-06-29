@@ -35,7 +35,19 @@ Para cerificar-se que o docker foi instalado corretamente execute o seguinte com
 
 ### Instalação
 
-Com o docker instalado, na pasta raiz do projeto, execute o seguinte comando: 
+Faça download do código executando o seguinte comando:
+
+```sh
+$ git clone https://github.com/caiovms/desafio-warren-brasil.git
+```
+
+Navegue a até a pasta raiz do projeto:
+
+```sh
+$ cd desafio-warren-brasil
+```
+
+Após com o docker instalado execute, build o projeto utilizando o seguinte comando: 
 
 ```sh
 $ docker-compose build
