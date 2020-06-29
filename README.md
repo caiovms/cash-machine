@@ -69,7 +69,7 @@ Para acessar o administrador do banco de dados acesse o endereço http://localho
 
 **Servidor:** *service_mysql*\
 **Utilizador:** *admin*\
-**Palavra-passe:** *warren2020*\
+**Palavra-passe:** *warren2020*
 
 Para finalizar os containers e excluir os dados do banco de dados armazenados no volume, execute o seguinte comando:
 ```sh
