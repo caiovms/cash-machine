@@ -46,7 +46,7 @@ Caso não possua as imagens do Asp.Core e do MySql, o download será realizado a
 A aplicação possui 3 containers:
 
 | Container | Endereço | Porta |
-| ------ | ------ | ------ |
+| :------: | :------: | :------: |
 | Webapi | http://localhost:5000 | 5000
 | MySQL Admin | http://localhost:80 | 80
 | MySQL | - | 3306
