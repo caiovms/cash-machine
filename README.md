@@ -57,11 +57,16 @@ Para subir os containers e acessar a aplicação, execute o seguinte comando:
 $ docker-compose up -d
 ```
 
+**Obs:** O container da aplicação aguarda o container do banco de dados estar pronto para pode ser executado, por isso, ele demora alguns segundos a mais que os outros. 
+
 Certifique-se que os containers estão rodando, para isso execute o comando:
 
 ```sh
 $ docker container ls -a
 ```
+
+[![N|Solid](http://www.hostcgs.com.br/hostimagem/images/635Untitled.png)]()
+
 
 Para acessar a aplicação, acesse o endereço http://localhost:5000.
 
