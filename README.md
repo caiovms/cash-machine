@@ -69,7 +69,7 @@ Para subir os containers e acessar a aplicação, execute o seguinte comando:
 $ docker-compose up -d
 ```
 
-**Obs:** O container da aplicação aguarda o container do banco de dados estar pronto para pode ser executado, por isso, ele demora alguns segundos a mais que os outros. 
+**Obs:** O container da aplicação aguarda o container do banco de dados estar pronto para pode ser executado, desta forma, sua inicialização demora alguns segundos a mais que os demais containeres, aguarde. 
 
 Certifique-se que os containers estão rodando, para isso execute o comando:
 
