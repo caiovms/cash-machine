@@ -38,18 +38,18 @@ services:
         environment:
             - PMA_ARBITRARY=1
 
-    service_api:
-        container_name: cnt-api
-        image: 'cnt-api:latest'
-        ports:
-            - '5000:80'
-        depends_on:
-            service_mysql:
-                condition: service_healthy
-        build:
-            context: .
-            dockerfile: desafio.warren.webapi/Dockerfile
-        environment:
-            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-        networks:
-            - mynetwork
+    # service_api:
+    #     container_name: cnt-api
+    #     image: 'cnt-api:latest'
+    #     ports:
+    #         - '5000:80'
+    #     depends_on:
+    #         service_mysql:
+    #             condition: service_healthy
+    #     build:
+    #         context: .
+    #         dockerfile: desafio.warren.webapi/Dockerfile
+    #     environment:
+    #         - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    #     networks:
+    #         - mynetwork

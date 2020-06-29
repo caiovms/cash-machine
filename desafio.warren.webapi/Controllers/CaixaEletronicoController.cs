@@ -20,8 +20,8 @@ namespace desafio.warren.webapi.Controllers
         #endregion
 
         #region Construtor
-        public CaixaEletronicoController(IMovimentoApplicationService applicationServiceMovimento, 
-                                         IContaApplicationService applicationServiceConta, 
+        public CaixaEletronicoController(IMovimentoApplicationService applicationServiceMovimento,
+                                         IContaApplicationService applicationServiceConta,
                                          IOperacaoApplicationService applicationOperacao)
         {
             this.applicationServiceMovimento = applicationServiceMovimento;
@@ -54,6 +54,7 @@ namespace desafio.warren.webapi.Controllers
                 TempData["MensagemErro"] = e.Message;
             }
 
+            LimparCampos();
             return RedirectToAction("Index", "CaixaEletronico");
         }
 
@@ -69,6 +70,7 @@ namespace desafio.warren.webapi.Controllers
                 TempData["MensagemErro"] = e.Message;
             }
 
+            LimparCampos();
             return RedirectToAction("Index", "CaixaEletronico");
         }
 
@@ -84,6 +86,7 @@ namespace desafio.warren.webapi.Controllers
                 TempData["MensagemErro"] = e.Message;
             }
 
+            LimparCampos();
             return RedirectToAction("Index", "CaixaEletronico");
         }
 
@@ -104,20 +107,27 @@ namespace desafio.warren.webapi.Controllers
 
         public IActionResult SetOperacao(int idOperacao)
         {
-            try
+            if (idOperacao == 0)
             {
-                caixaEletronico.IdOperacao = applicationOperacao.Obter(idOperacao).Id;
-                caixaEletronico.CodigoDeBarras = null;
-                caixaEletronico.ValorOperacao = null;
+                LimparCampos();
+                return RedirectToAction("Index", "CaixaEletronico");
             }
-            catch (Exception e)
-            {
-                TempData["MensagemErro"] = e.Message;
-            }
+            else
 
-            return RedirectToAction("Index", "CaixaEletronico");
+            {
+                try
+                {
+                    caixaEletronico.IdOperacao = applicationOperacao.Obter(idOperacao).Id;
+                    LimparCampos();
+                }
+                catch (Exception e)
+                {
+                    TempData["MensagemErro"] = e.Message;
+                }
+                return RedirectToAction("Index", "CaixaEletronico");
+            }
         }
-        
+
         private void InicializarCaixaEletronico()
         {
             try
@@ -132,6 +142,12 @@ namespace desafio.warren.webapi.Controllers
             {
                 TempData["MensagemErro"] = e.Message;
             }
+        }
+        
+        private void LimparCampos()
+        {
+            caixaEletronico.CodigoDeBarras = null;
+            caixaEletronico.ValorOperacao = null;
         }
     }
 }
