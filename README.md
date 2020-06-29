@@ -1,5 +1,5 @@
 # Desafio Warren Brasil C\#
-[![N|Solid](http://www.hostcgs.com.br/hostimagem/images/742Untitled.png)]()
+[![N|Solid](http://www.hostcgs.com.br/hostimagem/images/742Untitled.png)](https://github.com/caiovms/desafio-warren-brasil)
 
 Aplicação desenvolvida como parte do processo seletivo para o cargo de desenvolvedor de software da Warren Brasil.
 
@@ -46,7 +46,7 @@ Caso não possua as imagens do Asp.Core e do MySql, o download será realizado a
 A aplicação possui 3 containers:
 
 | Container | Endereço | Porta |
-| ------ | ------ | ------ |
+| :------: | :------: | :------: |
 | Webapi | http://localhost:5000 | 5000
 | MySQL Admin | http://localhost:80 | 80
 | MySQL | - | 3306
@@ -57,11 +57,16 @@ Para subir os containers e acessar a aplicação, execute o seguinte comando:
 $ docker-compose up -d
 ```
 
+**Obs:** O container da aplicação aguarda o container do banco de dados estar pronto para pode ser executado, por isso, ele demora alguns segundos a mais que os outros. 
+
 Certifique-se que os containers estão rodando, para isso execute o comando:
 
 ```sh
 $ docker container ls -a
 ```
+
+[![N|Solid](http://www.hostcgs.com.br/hostimagem/images/635Untitled.png)]()
+
 
 Para acessar a aplicação, acesse o endereço http://localhost:5000.
 
