@@ -1,27 +1,27 @@
-# Desafio Warren Brasil C\#
+# Cash Machine C\#
 [![N|Solid](http://www.hostcgs.com.br/hostimagem/images/742Untitled.png)](https://github.com/caiovms/desafio-warren-brasil)
 
-Aplicação desenvolvida como parte do processo seletivo para o cargo de desenvolvedor de software da Warren Brasil.
+Application developed as part of the selection process for the position of software developer at Warren Brasil.
 
-### Tecnologias
-Principais tecnologias utilizadas:
+### Technology
+Main technologies used:
 
   - [.Net Core](https://docs.microsoft.com/pt-br/aspnet/core/?view=aspnetcore-3.1)
   - [Docker](https://www.docker.com/)
   - [MySql](https://www.mysql.com/)
 
-### Arquitetura  
-A arquitetura da aplicação se propõe a seguir as premissas do DDD (Domain-Driven-Design): 
+### Architecture  
+The application architecture proposes to follow the premises of DDD (Domain-Driven-Design):
 
 [![N|Solid](http://www.hostcgs.com.br/hostimagem/images/834Apresenta_o1.png)](https://www.brunobrito.net.br/domain-driven-design/)
 
-### Pré-requisitos
+### Prerequisites
 
 - Docker
   - [Windows/Mac](https://www.docker.com/products/docker-desktop)
   - [Linux](https://sempreupdate.com.br/container-instalar-docker-compose-no-ubuntu-20-04/)
 
-Para cerificar-se que o docker foi instalado corretamente execute o seguinte comando:
+To make sure that the docker has been installed correctly, run the following command:
 
 - Windows
     ```sh
@@ -33,45 +33,45 @@ Para cerificar-se que o docker foi instalado corretamente execute o seguinte com
     $ sudo systemctl status docker
     ```
 
-### Instalação
+### Installation
 
-Faça download do código executando o seguinte comando:
-
-```sh
-$ git clone https://github.com/caiovms/desafio-warren-brasil.git
-```
-
-Navegue a até a pasta raiz do projeto:
+Download the code by running the following command:
 
 ```sh
-$ cd desafio-warren-brasil
+$ git clone https://github.com/caiovms/cash-machine.git
 ```
 
-Após com o docker instalado execute, build o projeto utilizando o seguinte comando: 
+Navigate to the project's root folder:
+
+```sh
+$ cd cash-machine
+```
+
+After with the docker installed, execute, build the project using the following command:
 
 ```sh
 $ docker-compose build
 ```
 
-Caso não possua as imagens do Asp.Core e do MySql, o download será realizado automaticamente, em seguida será gerada a imagem da aplicação bem como as dos containers MySQL e MySQL Admin.
+If you do not have the Asp.Core and MySql images, the download will be performed automatically, then the image of the application will be generated, as well as the MySQL and MySQL Admin containers.
 
-A aplicação possui 3 containers:
+The application has 3 containers:
 
-| Container | Endereço | Porta |
+| Container | Address | Port |
 | :------: | :------: | :------: |
 | Webapi | http://localhost:5000 | 5000
 | MySQL Admin | http://localhost:80 | 80
 | MySQL | - | 3306
 
-### Como usar:
-Para subir os containers e acessar a aplicação, execute o seguinte comando:
+### How to use:
+To upload the containers and access the application, execute the following command:
 ```sh
 $ docker-compose up -d
 ```
 
-**Obs:** O container da aplicação aguarda o container do banco de dados estar pronto para pode ser executado, desta forma, sua inicialização demora alguns segundos a mais que os demais containeres, aguarde. 
+** Note: ** The application container is waiting for the database container to be ready to be able to be executed, this way, its initialization takes a few seconds longer than the other containers, wait.
 
-Certifique-se que os containers estão rodando, para isso execute o comando:
+Make sure the containers are running, to do this, run the command:
 
 ```sh
 $ docker container ls -a
@@ -80,28 +80,28 @@ $ docker container ls -a
 [![N|Solid](http://www.hostcgs.com.br/hostimagem/images/635Untitled.png)]()
 
 
-Para acessar a aplicação, acesse o endereço http://localhost:5000.
+To access the application, access the address http://localhost:5000.
 
-Para acessar o administrador do banco de dados acesse o endereço http://localhost:80 utilizando as seguintes informações:
+To access the database administrator, access the address http://localhost:80 using the following information:
 
-**Servidor:** *service_mysql*\
-**Utilizador:** *admin*\
-**Palavra-passe:** *warren2020*
+**Server:** *service_mysql*\
+**Username:** *admin*\
+**Password:** *warren2020*
 
-Para finalizar os containers e excluir os dados do banco de dados armazenados no volume, execute o seguinte comando:
+To finalize the containers and delete the database data stored on the volume, run the following command:
 ```sh
 $ docker-compose down -v
 ```
 
-Caso queira apenas finalizar os containers e manter os dados, remova o parâmetro *-v* do comando acima: 
+If you just want to finalize the containers and keep the data, remove the * -v * parameter from the above command:
 ```sh
 $ docker-compose down
 ```
 
-Dessa forma, ao subir a aplicação novamente, os dados anteriores serão mantidos.
+This way, when uploading the application again, the previous data will be kept.
 
 ### Notas
 
-- Todas as operações são realizadas para uma conta, porém a estrutura foi pensada levando em conta uma ambiente real.
-- A função Rentabilizar simula uma passagem de dia, aplicando uma taxa de rendimento de 1% ao saldo da conta.
+- All operations are carried out for one account, but the structure was designed taking into account a real environment.
+- The Monetize function simulates a day pass, applying a 1% yield rate to the account balance.
 
