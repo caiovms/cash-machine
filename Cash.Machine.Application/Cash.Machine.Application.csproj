@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cash.Machine.Cross.Cutting\Cash.Machine.Cross.Cutting.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Domain.Core\Cash.Machine.Domain.Core.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Domain\Cash.Machine.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

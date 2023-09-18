@@ -1,43 +1,43 @@
-﻿CREATE DATABASE IF NOT EXISTS db_warren;
+﻿CREATE DATABASE IF NOT EXISTS db_cash_machine;
 
-USE db_warren
+USE db_cash_machine
 
-CREATE TABLE IF NOT EXISTS Conta (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    agencia VARCHAR(3) NOT NULL,
-    tipo VARCHAR(2) NOT NULL,
-    numero VARCHAR(8) NOT NULL,
-    digito CHAR(1) NOT NULL,
-    saldo  DECIMAL(15,2) NOT NULL,
-    dataCadastro DATETIME  NOT NULL
+CREATE TABLE IF NOT EXISTS Account (
+    Id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    Agency VARCHAR(3) NOT NULL,
+    Type VARCHAR(2) NOT NULL,
+    Number VARCHAR(8) NOT NULL,
+    Digit CHAR(1) NOT NULL,
+    Balance DECIMAL(15,2) NOT NULL,
+    CreatedOn DATETIME  NOT NULL
 ) ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS Operacao (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    descricao VARCHAR(50) NOT NULL
+CREATE TABLE IF NOT EXISTS Operation (
+    Id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    Description VARCHAR(50) NOT NULL
 ) ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS Movimento (
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    idConta INTEGER NOT NULL, 
-    idOperacao INTEGER NOT NULL, 
-    valor  DECIMAL(15,2) NOT NULL,
-    data DATETIME  NOT NULL,
-    codigoBarras VARCHAR(48) NULL,
+CREATE TABLE IF NOT EXISTS Movement (
+    Id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    AccountId INTEGER NOT NULL, 
+    OperationId INTEGER NOT NULL, 
+    Amount  DECIMAL(15,2) NOT NULL,
+    Date DATETIME  NOT NULL,
+    BarCode VARCHAR(48) NULL,
 
-    INDEX conta_id (idConta),
-    INDEX operacao_id (idOperacao),
+    INDEX Account_Id (AccountId),
+    INDEX Operation_Id (OperationId),
 
 
-    FOREIGN KEY(idConta) REFERENCES Conta(id),
-    FOREIGN KEY(idOperacao) REFERENCES Operacao(id)
+    FOREIGN KEY(AccountId) REFERENCES Account(Id),
+    FOREIGN KEY(OperationId) REFERENCES Operation(Id)
     
 ) ENGINE=INNODB;
 
 
-INSERT INTO Operacao (descricao) VALUES ('SAQUE');
-INSERT INTO Operacao (descricao) VALUES ('DEPOSITO');
-INSERT INTO Operacao (descricao) VALUES ('PAGAMENTO');
-INSERT INTO Operacao (descricao) VALUES ('RENTABILIZIACAO');
+INSERT INTO Operation (Description) VALUES ('WITHDRAW');
+INSERT INTO Operation (Description) VALUES ('DEPOSIT');
+INSERT INTO Operation (Description) VALUES ('PAYMENT');
+INSERT INTO Operation (Description) VALUES ('MONETIZE');
 
-INSERT INTO Conta (agencia, tipo, numero, digito, saldo, dataCadastro) VALUES ('037', '01', '01783451', '9', 5000, NOW());
+INSERT INTO Account (Agency, Type, Number, Digit, Balance, CreatedOn) VALUES ('037', '01', '01783451', '9', 5000, NOW());

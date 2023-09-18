@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cash.Machine.Application\Cash.Machine.Application.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Cross.Cutting\Cash.Machine.Cross.Cutting.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Repository\Cash.Machine.Repository.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Services\Cash.Machine.Services.csproj" />
+  </ItemGroup>
+
+</Project>
