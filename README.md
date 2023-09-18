@@ -12,8 +12,8 @@ Main technologies used:
 
 ### Architecture  
 The application architecture proposes to follow the premises of DDD (Domain-Driven-Design):
+![image](https://github.com/caiovms/cash-machine/assets/5957094/ee188fd6-c5b7-4965-8815-2b3f4f6364f2)
 
-[![N|Solid](http://www.hostcgs.com.br/hostimagem/images/834Apresenta_o1.png)](https://www.brunobrito.net.br/domain-driven-design/)
 
 ### Prerequisites
 
