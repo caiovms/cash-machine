@@ -22,9 +22,9 @@ services:
             - mynetwork
         environment:
             - MYSQL_ROOT_PASSWORD=admin
-            - MYSQL_DATABASE=db_warren
+            - MYSQL_DATABASE=db_cash_machine
             - MYSQL_USER=admin
-            - MYSQL_PASSWORD=warren2020
+            - MYSQL_PASSWORD=admin
         healthcheck:
             test: "/usr/bin/mysql --user=root --password=admin --execute \"SHOW DATABASES;\""
 
@@ -48,7 +48,7 @@ services:
                 condition: service_healthy
         build:
             context: .
-            dockerfile: desafio.warren.webapi/Dockerfile
+            dockerfile: Cash.Machine.WebApi/Dockerfile
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
         networks:

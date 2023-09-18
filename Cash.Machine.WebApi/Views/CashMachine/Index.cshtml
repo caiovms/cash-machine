@@ -1,0 +1,163 @@
+﻿@{
+    string[] acoes = { "WITHDRAW", "DEPOSIT", "PAYMENT", "MONETIZE" };
+    string[] rotas = { "", "withdraw", "deposit", "payment", "monetize" };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cash Machine</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+
+        @if (!string.IsNullOrEmpty(ViewBag.ErroMessage))
+        {
+            <script type="text/javascript">
+                alert("@ViewBag.ErroMessage");
+            </script>
+        }
+
+        <div class="row justify-content-md-center page-title">
+            Cash Machine
+        </div>
+
+        <div class="row global">
+            <div class="col-2 div-buttons">
+                <div class="row button">
+                    <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("SetOperation", "CashMachine", new { operationId = 1 })'">Withdraw</button>
+                </div>
+                <div class="row button">
+                    <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("SetOperation", "CashMachine", new { operationId = 2 })'">Deposit</button>
+                </div>
+                <div class="row button">
+                    <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("SetOperation", "CashMachine", new { operationId = 3 })'">Payment</button>
+                </div>
+                <div class="row button">
+                    <button type="button" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("SetOperation", "CashMachine", new { operationId = 4 })'">Monetize</button>
+                </div>
+            </div>
+            <div class="col-6 border border-secondary rounded">
+                <div class="col-sm-12 account-info-title">
+                    Account Informations  @( (@Model.OperationId > 0 && @Model.OperationId <= 4) ? ( " - " + @acoes[@Model.OperationId - 1]) : null)
+                </div>
+                <form method="post" id="form" action="@Url.Action(@rotas[@Model.OperationId], "CashMachine")">
+                    <input type="hidden" id="operationId" name="OperationId" value="@Model.OperationId">
+                    <input type="hidden" id="accountId" name="AccountId" value="@Model.Account.Id">
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="agencia">Agency</label>
+                            <input type="text" class="form-control" id="agency" name="Agency" value="@Model.Account.Agency" maxlength="3" readonly>
+                        </div>
+                        <div class="col-8"></div>
+                        <div class="form-group col-4">
+                            <label for="tipo">Type</label>
+                            <input type="text" class="form-control" id="type" name="Type" value="@Model.Account.Type" maxlength="2" readonly>
+                        </div>
+                        <div class="col-8"></div>
+                        <div class="form-group col-5">
+                            <label for="numero">Number</label>
+                            <input type="text" class="form-control" id="number" name="Number" value="@Model.Account.Number" maxlength="8" readonly>
+                        </div>
+                        <div class="form-group col-2">
+                            <label for="digito">&nbsp</label>
+                            <input type="text" class="form-control" id="digit" name="Digit" value="@Model.Account.Digit" maxlength="1" readonly>
+                        </div>
+                        <div class="col-5"></div>
+                        <div class="form-group col-7">
+                            <label for="operationAmount">Amount</label>
+                            <input type="text" class="form-control" required id="operationAmount" name="operationAmount" maxlength="15" @(Model.OperationId == 1 | Model.OperationId == 2 | Model.OperationId == 3 ? null : "readonly")>
+                        </div>
+                        <div class="col-5"></div>
+                        <div class="form-group col-12">
+                            <label for="barCode">Bar Code</label>
+                            <input type="text" class="form-control" id="barCode" name="BarCode" maxlength="48" @(Model.OperationId == 3 ? null : "readonly")>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12 actions-buttons">
+                            <button type="button" class="btn btn-secondary" id="cancel" onclick="location.href='@Url.Action("SetOperation", "CashMachine", new { operationId = 0 })'">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="submit" disabled>Confirm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3 border border-secondary rounded div-statement">
+                <div class="statement-title">
+                    BankStatement
+                </div>
+                @foreach (var movement in Model.BankStatement.Movements)
+                {
+                    <div class="statement-box border border-secondary ">
+                        <p class="statement-content"> @acoes[movement.OperationId - 1]</p>
+                        <p class="statement-content">Data: @movement.Date</p>
+                        <p class="statement-content  @(movement.Amount >= 0 ? "text-primary" : "text-danger")">R$ @string.Format("{0:N}", movement.Amount)</p>
+                    </div>
+                }
+                <div class="statement-balance">
+                    Balance:
+                    <span class="@(@Model.Account.Balance >= 0 ? "text-primary" : "text-danger")"> R$ @string.Format("{0:N}", @Model.Account.Balance) </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-mask-money/dist/jquery.maskMoney.js"></script>
+    <script src="~/lib/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+
+        var operationId = document.getElementById("operationId").value;
+        var submit = document.getElementById("submit");
+        var cancel = document.getElementById("cancel");
+        var operationAmount;
+        var barCode;
+
+        $(document).ready(function () {
+            $('#operationAmount').mask('000000000000000,00', { reverse: true });
+
+            $("#form").submit(function () {
+                stringoperationAmount = document.getElementById("operationAmount").value;
+                decimalAmountOperation = parseFloat(stringoperationAmount.replace(',', '.').replace(' ', ''));
+
+                document.getElementById("operationAmount").value = decimalAmountOperation;
+            });
+
+            submit.disabled = !(operationId == 4);
+            cancel.disabled = !(operationId > 0 && operationId <= 4);
+        });
+
+        document.getElementById("operationAmount").addEventListener("input", function () {
+            validation();
+        });
+
+        document.getElementById("barCode").addEventListener("input", function () {
+            validation();
+        });
+
+        document.getElementById("submit").addEventListener("input", function () {
+            rentabilizar();
+        });
+
+        function validation() {
+
+            operationAmount = document.getElementById("operationAmount").value;
+            barCode = document.getElementById("barCode").value;
+
+            if (operationId == 1 || operationId == 2) {
+                submit.disabled = !operationAmount.length > 0
+            } else if (operationId == 3) {
+                submit.disabled = !(operationAmount.length > 0 && barCode.length > 0);
+            }
+        }
+    </script>
+
+</body>
+</html>

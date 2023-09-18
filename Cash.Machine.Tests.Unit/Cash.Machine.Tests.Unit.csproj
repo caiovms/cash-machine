@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="29.0.2" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Moq" Version="4.14.3" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cash.Machine.Api\Cash.Machine.WebApi.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Application\Cash.Machine.Application.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Data\Cash.Machine.Data.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Domain\Cash.Machine.Domain.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Repository\Cash.Machine.Repository.csproj" />
+    <ProjectReference Include="..\Cash.Machine.Services\Cash.Machine.Services.csproj" />
+  </ItemGroup>
+
+</Project>

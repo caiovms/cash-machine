@@ -1,7 +1,7 @@
 # Cash Machine C\#
 [![N|Solid](http://www.hostcgs.com.br/hostimagem/images/742Untitled.png)](https://github.com/caiovms/desafio-warren-brasil)
 
-Application developed as part of the selection process for the position of software developer at Warren Brasil.
+Application developed as part of the selection process for the position of software developer.
 
 ### Technology
 Main technologies used:
@@ -86,7 +86,7 @@ To access the database administrator, access the address http://localhost:80 usi
 
 **Server:** *service_mysql*\
 **Username:** *admin*\
-**Password:** *warren2020*
+**Password:** *admin*
 
 To finalize the containers and delete the database data stored on the volume, run the following command:
 ```sh
@@ -104,4 +104,3 @@ This way, when uploading the application again, the previous data will be kept.
 
 - All operations are carried out for one account, but the structure was designed taking into account a real environment.
 - The Monetize function simulates a day pass, applying a 1% yield rate to the account balance.
-
